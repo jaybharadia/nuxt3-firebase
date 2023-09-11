@@ -1,6 +1,8 @@
 ## How App Looks
 <img width="1301" alt="image" src="https://github.com/jaybharadia/nuxt3-firebase/assets/28944638/6b758754-a552-4abf-a40f-83c93f701c08">
+
 ### After Login
+
 <img width="1301" alt="image" src="https://github.com/jaybharadia/nuxt3-firebase/assets/28944638/380b8a02-b015-4221-a411-860a0b4bbfb6">
 
 ## Firebase Authentication
