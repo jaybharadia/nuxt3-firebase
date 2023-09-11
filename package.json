@@ -1,0 +1,30 @@
+{
+    "name": "nuxt-app",
+    "private": true,
+    "version": "1.4.0",
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "devDependencies": {
+        "@nuxt/devtools": "^0.5.5",
+        "@nuxthq/ui": "^2.6.0",
+        "@nuxtjs/tailwindcss": "^6.7.0",
+        "@types/node": "^18",
+        "nuxt": "^3.6.3"
+    },
+    "dependencies": {
+        "@firebase/app-types": "^0.9.0",
+        "@iconify-json/uil": "^1.1.5",
+        "@nuxt/image-edge": "^1.0.0-rc.1-28110023.6b8ab9c",
+        "firebase": "^10.0.0",
+        "firebase-admin": "^11.10.1",
+        "firebase-functions": "^4.4.1",
+        "firebaseui": "^6.0.2",
+        "nuxt-vuefire": "^0.2.7",
+        "vuefire": "^3.1.8"
+    }
+}
