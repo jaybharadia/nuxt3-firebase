@@ -1,22 +1,22 @@
-# Nuxt 3 Minimal Starter
+## How App Looks
+<img width="1301" alt="image" src="https://github.com/jaybharadia/nuxt3-firebase/assets/28944638/6b758754-a552-4abf-a40f-83c93f701c08">
+### After Login
+<img width="1301" alt="image" src="https://github.com/jaybharadia/nuxt3-firebase/assets/28944638/380b8a02-b015-4221-a411-860a0b4bbfb6">
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Firebase Authentication
+### OAuth
+- Login with Google
+- Login with Twitter
+- Login with Github
+
+### Login Anonymously
+
+### Login with Email and password
+
+### Login with Email Invation Link
 
 ## Setup
-
 Make sure to install the dependencies:
-
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
-```
-
 ## Development Server
 
 Start the development server on `http://localhost:3000`
@@ -38,6 +38,3 @@ Locally preview production build:
 ```bash
 npm run preview
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-# nuxt-3-app
