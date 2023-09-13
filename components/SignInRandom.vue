@@ -52,10 +52,6 @@ export default {
         const signinPopup = () => {
             signInWithPopup(auth, googleAuthProvider)
                 .then((user) => {
-                    console.log(
-                        "🚀 ~ file: SignInRandom.vue:55 ~ .then ~ user:",
-                        user
-                    );
                     googleUser.value = user.user;
 
                     credential.value = GoogleAuthProvider.credential(
@@ -66,17 +62,8 @@ export default {
                         .then((usercred) => {
                             const user = usercred.user;
                             alert("Anonymous account successfully upgraded");
-                            console.log(
-                                "Anonymous account successfully upgraded",
-                                user
-                            );
                         })
-                        .catch((error) => {
-                            console.log(
-                                "Error upgrading anonymous account",
-                                error
-                            );
-                        });
+                        .catch((error) => {});
 
                     alert("Login with Google Success");
                 })

@@ -7,31 +7,50 @@ import {
     sendSignInLinkToEmail,
     GoogleAuthProvider,
     TwitterAuthProvider,
+    signInWithEmailLink,
+    isSignInWithEmailLink,
 } from "firebase/auth";
 
-import { settings } from "~/constants";
+const isProd = import.meta.env.PROD;
+
 export const useAuth = () => {
     const loading = ref(false);
     const emailLinkLoading = ref(false);
     const router = useRouter();
     const auth = useFirebaseAuth();
     const toast = useToast();
+
+    const {
+        public: { deploymentUrl },
+    } = useRuntimeConfig();
+    const settings = {
+        // URL you want to redirect back to. The domain (www.example.com) for this
+        // URL must be in the authorized domains list in the Firebase Console.
+        url: isProd
+            ? `${deploymentUrl}/verify-email`
+            : "http://localhost:3000/verify-email",
+        // This must be true.
+        handleCodeInApp: true,
+        iOS: {
+            bundleId: "com.example.ios",
+        },
+        android: {
+            packageName: "com.example.android",
+            installApp: true,
+            minimumVersion: "12",
+        },
+    };
+
     const signInWithGithub = () => {
-        console.log("inside signinGithub ");
         const provider = new GithubAuthProvider();
         const auth = useFirebaseAuth();
         signInWithPopup(auth, provider).then((result) => {
             // This gives you a GitHub Access Token. You can use it to access the GitHub API.
             const credential = GithubAuthProvider.credentialFromResult(result);
-            console.log(
-                "🚀 ~ file: Github.vue:31 ~ .then ~ credential:",
-                credential
-            );
+
             const token = credential.accessToken;
-            console.log("🚀 ~ file: Github.vue:34 ~ .then ~ token:", token);
             // The signed-in user info.
             const user = result.user;
-            console.log("🚀 ~ file: Github.vue:38 ~ .then ~ user:", user);
             // IdP data available using getAdditionalUserInfo(result)
             // ...
             router.push("/");
@@ -108,6 +127,32 @@ export const useAuth = () => {
             .finally(() => (emailLinkLoading.value = false));
     };
 
+    // The client SDK will parse the code from the link for you.
+    const verifyEmail = (email) => {
+        if (isSignInWithEmailLink(auth, window.location.href)) {
+            signInWithEmailLink(auth, email, window.location.href)
+                .then(() => {
+                    onSuccess();
+                    // You can access the new user via result.user
+                    // Additional user info profile not available via:
+                    // result.additionalUserInfo.profile == null
+                    // You can check if the user is new or existing:
+                    // result.additionalUserInfo.isNewUser
+                })
+                .catch((error) => {
+                    console.error(
+                        "🚀 ~ file: auth.js:126 ~ verifyEmail ~ error:",
+                        error
+                    );
+
+                    onError(error);
+                    router.push("/login");
+                    // Some error occurred, you can inspect the code: error.code
+                    // Common errors could be invalid email and invalid or expired OTPs.
+                });
+        }
+    };
+
     const signInWithGoogle = () => {
         const googleAuthProvider = new GoogleAuthProvider();
         signInWithPopup(auth, googleAuthProvider)
@@ -142,5 +187,6 @@ export const useAuth = () => {
         emailLinkLoading,
         signInRandom,
         sendLoginLinkInEmail,
+        verifyEmail,
     };
 };

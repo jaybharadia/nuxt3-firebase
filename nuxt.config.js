@@ -10,6 +10,7 @@ export default defineNuxtConfig({
         OPEN_API_KEY: "asdadaoadjij22",
         public: {
             WEATHER_KEY: "asdjiadij",
+            deploymentUrl: process.env.DEPLOYMENT_URL,
         },
     },
     devtools: {
@@ -33,13 +34,13 @@ export default defineNuxtConfig({
     vuefire: {
         auth: true,
         config: {
-            apiKey: "AIzaSyA-uP0OI612B4j3TGl64fnYbPBcZFIuaos",
-            authDomain: "metal-density-390112.firebaseapp.com",
-            projectId: "metal-density-390112",
-            storageBucket: "metal-density-390112.appspot.com",
-            messagingSenderId: "139735434129",
-            appId: "1:139735434129:web:b53742d2d384bbd4dbd030",
-            measurementId: "G-F1XTG8XG4J",
+            apiKey: process.env.API_KEY,
+            authDomain: process.env.AUTH_DOMAIN,
+            projectId: process.env.PROJECT_ID,
+            storageBucket: process.env.STORAGE_BUCKET,
+            messagingSenderId: process.env.MESSAGING_SENDER_ID,
+            appId: process.env.APP_ID,
+            measurementId: process.env.MEASUREMENT_ID,
             // there could be other properties depending on the project
         },
     },
