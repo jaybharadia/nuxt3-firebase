@@ -64,6 +64,8 @@
 
                 <Divider />
 
+                <SignInPhoneNumber />
+
                 <UButton
                     label="Sign In Anonymously"
                     block
@@ -77,6 +79,12 @@
 
 <script>
 import Divider from "~/components/_divider.vue";
+import {
+    getAuth,
+    RecaptchaVerifier,
+    signInWithPhoneNumber,
+} from "firebase/auth";
+
 export default {
     setup() {
         definePageMeta({
@@ -106,5 +114,6 @@ export default {
             password: "",
         };
     },
+    methods: {},
 };
 </script>
